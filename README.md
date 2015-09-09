@@ -1,6 +1,9 @@
 Silex Markdown Provider
 ===============
 
+[![Build Status](https://travis-ci.org/nachonerd/silex-markdown-provider.svg?branch=master)](https://travis-ci.org/nachonerd/silex-markdown-provider)
+[![Code Climate](https://codeclimate.com/github/nachonerd/silex-markdown-provider/badges/gpa.svg)](https://codeclimate.com/github/nachonerd/silex-markdown-provider)
+[![Test Coverage](https://codeclimate.com/github/nachonerd/silex-markdown-provider/badges/coverage.svg)](https://codeclimate.com/github/nachonerd/silex-markdown-provider/coverage)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
 
 ### Description
