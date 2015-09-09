@@ -1,6 +1,9 @@
 Silex Markdown Provider
 ===============
 
+[![Latest Stable Version](https://poser.pugx.org/nachonerd/silex-markdown-provider/v/stable)](https://packagist.org/packages/nachonerd/silex-markdown-provider)
+[![Total Downloads](https://poser.pugx.org/nachonerd/silex-markdown-provider/downloads)](https://packagist.org/packages/nachonerd/silex-markdown-provider)
+[![Latest Unstable Version](https://poser.pugx.org/nachonerd/silex-markdown-provider/v/unstable)](https://packagist.org/packages/nachonerd/silex-markdown-provider) [![License](https://poser.pugx.org/nachonerd/silex-markdown-provider/license)](https://packagist.org/packages/nachonerd/silex-markdown-provider)
 [![Build Status](https://travis-ci.org/nachonerd/silex-markdown-provider.svg?branch=master)](https://travis-ci.org/nachonerd/silex-markdown-provider)
 [![Code Climate](https://codeclimate.com/github/nachonerd/silex-markdown-provider/badges/gpa.svg)](https://codeclimate.com/github/nachonerd/silex-markdown-provider)
 [![Test Coverage](https://codeclimate.com/github/nachonerd/silex-markdown-provider/badges/coverage.svg)](https://codeclimate.com/github/nachonerd/silex-markdown-provider/coverage)
