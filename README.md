@@ -10,7 +10,7 @@ Silex Markdown Provider
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
 
 ### Description
-Silex Service Provider using [cebe/markdown](http://markdown.cebe.cc/)
+Silex Service Provider using [cebe/markdown](http://markdown.cebe.cc/). cebe/markdown was created by [Carsten Brandt](http://cebe.cc/about).
 
 ### License
 GNU GPL v3
