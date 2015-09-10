@@ -36,10 +36,58 @@ Include following line of code somewhere in your initial Silex file (index.php o
 
 ```php
 ...
-$app->register(new \NachoNerd\Silex\Markdown\Provider());
+$app->register(
+    new \NachoNerd\Silex\Markdown\Provider(),
+    array(
+        "nn.markdown.path" => __DIR__,
+        "nn.markdown.flavor" => 'extra',
+        "nn.markdown.filter" => '/\.md/'
+    )
+);
 ...
 ```
 Now you have access to instance of cebe/markdown throw $app['nn.markdown'].
+
+### Twig Extension
+
+#### Filters
+
+- **markdown_parse**
+Parse specified text to html
+
+```jinja
+
+{{ "## Some text"|markdown_parse }}
+
+.....
+
+{{ texttoparse|markdown_parse }}
+
+```
+
+- **markdown_parse_file**
+Parse specified file to html
+
+```jinja
+
+{{ "some/file.md"|markdown_parse_file }}
+
+.....
+
+{{ filename|markdown_parse_file }}
+
+```
+
+#### Functions
+
+- **markdown_parse_last_file**
+Parse last file in markdown,path directory to html
+
+```jinja
+
+{{ markdown_parse_last_file() }}
+
+```
 
 ### Example
 
