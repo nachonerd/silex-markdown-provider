@@ -55,7 +55,7 @@ Now you have access to instance of cebe/markdown throw $app['nn.markdown'].
 - **markdown_parse**
 Parse specified text to html
 
-```jinja
+```twig
 
 {{ "## Some text"|markdown_parse }}
 
@@ -68,7 +68,7 @@ Parse specified text to html
 - **markdown_parse_file**
 Parse specified file to html
 
-```jinja
+```twig
 
 {{ "some/file.md"|markdown_parse_file }}
 
@@ -83,7 +83,7 @@ Parse specified file to html
 - **markdown_parse_last_file**
 Parse last file in markdown,path directory to html
 
-```jinja
+```twig
 
 {{ markdown_parse_last_file() }}
 
