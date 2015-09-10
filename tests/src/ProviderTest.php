@@ -36,7 +36,7 @@
  * @license   GNU GPL v3
  * @link      https://github.com/nachonerd/markdownblog
  */
-class ProviderTest extends \PHPUnit_Framework_TestCase
+class ProviderTest extends \Silex\WebTestCase
 {
     /**
      * Sets up the fixture. This method is called before a test is executed.
@@ -45,7 +45,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        // To no call de parent setUp.
+        parent::setUp();
     }
     /**
      * Tears down the fixture. This method is called after a test is executed.
@@ -54,6 +54,17 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
+    }
+
+    /**
+     * CreateApplication
+     *
+     * @return \Silex\Application
+     */
+    public function createApplication()
+    {
+        $app = new \Silex\Application();
+        return $app;
     }
 
     /**
@@ -77,7 +88,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
     public function testRegisterMarkdown()
     {
 
-        $app = new Silex\Application();
+        $app = $this->app;
         $app->register(new \NachoNerd\Silex\Markdown\Provider());
 
         $this->assertInstanceOf(
@@ -94,7 +105,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
     public function testBootMarkdown()
     {
 
-        $app = new Silex\Application();
+        $app = $this->app;
         $app->register(new \NachoNerd\Silex\Markdown\Provider());
         $app->boot();
 
@@ -112,7 +123,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
     public function testRegisterMarkdownSetup()
     {
 
-        $app = new Silex\Application();
+        $app = $this->app;
         $app->register(
             new \NachoNerd\Silex\Markdown\Provider(),
             array(
@@ -156,6 +167,120 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             '/\.md/',
             $rp->getValue($markdown)
+        );
+    }
+
+    /**
+     * Test Register Twig And Use Parse
+     *
+     * @return void
+     */
+    public function testRegisterTwigAndUseParse()
+    {
+        $path = realpath(__DIR__."/../resources/")."/";
+        $app = $this->app;
+        $app->register(
+            new \Silex\Provider\TwigServiceProvider(),
+            array(
+                'twig.path' => $path."views/"
+            )
+        );
+        $app->register(
+            new \NachoNerd\Silex\Markdown\Provider(),
+            array(
+                "nn.markdown.path" => $path,
+                "nn.markdown.flavor" => 'extra',
+                "nn.markdown.filter" => '/\.md/'
+            )
+        );
+        $app->boot();
+
+        $html = $app['twig']->render(
+            "test1.html.twig",
+            array('content' => "## Qualibet stirpe")
+        );
+
+        $this->assertEquals(
+            "<h2>Qualibet stirpe</h2>",
+            str_replace("\n", "", $html)
+        );
+    }
+
+    /**
+     * Test Register Twig And Use Parse File
+     *
+     * @return void
+     */
+    public function testRegisterTwigAndUseParseFile()
+    {
+        $path = realpath(__DIR__."/../resources/")."/";
+        $app = $this->app;
+        $app->register(
+            new \Silex\Provider\TwigServiceProvider(),
+            array(
+                'twig.path' => $path."views/"
+            )
+        );
+        $app->register(
+            new \NachoNerd\Silex\Markdown\Provider(),
+            array(
+                "nn.markdown.path" => $path,
+                "nn.markdown.flavor" => 'extra',
+                "nn.markdown.filter" => '/\.md/'
+            )
+        );
+        $app->boot();
+
+        $html = $app['twig']->render(
+            "test2.html.twig"
+        );
+
+        $this->assertEquals(
+            "<ol><li>Si nautae modo volucres pampineis silvas leves</li>".
+            "<li>Novissima taurorum ille talis cum</li><li>Sublime numina</li>".
+            "<li>Sua quae idemque tendebam consumpta nautas</li>".
+            "<li>Quid vulnus e positus exierant</li></ol>",
+            str_replace("\n", "", $html)
+        );
+    }
+
+    /**
+     * Test Register Twig And Use Parse File
+     *
+     * @return void
+     */
+    public function testRegisterTwigAndUseParseLastFile()
+    {
+        $path = realpath(__DIR__."/../resources/")."/";
+        $app = $this->app;
+        $app->register(
+            new \Silex\Provider\TwigServiceProvider(),
+            array(
+                'twig.path' => $path."views/"
+            )
+        );
+        $app->register(
+            new \NachoNerd\Silex\Markdown\Provider(),
+            array(
+                "nn.markdown.path" => $path."views/",
+                "nn.markdown.flavor" => 'extra',
+                "nn.markdown.filter" => '/\.md/'
+            )
+        );
+        $app->boot();
+
+        $html = $app['twig']->render(
+            "test3.html.twig"
+        );
+
+        $content = "";
+        foreach ($app['nn.markdown']->getNLastFiles(1) as $file) {
+            $content = $file->getContents();
+        }
+
+        $this->assertEquals(
+            str_replace("\n", "", $app['nn.markdown']->parse($content)),
+            str_replace("\n", "", $html)
         );
     }
 }

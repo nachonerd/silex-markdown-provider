@@ -60,6 +60,49 @@ class Provider implements ServiceProviderInterface
                 );
             }
         );
+
+        if (isset($app["twig"])) {
+            $app['twig'] = $app->share(
+                $app->extend(
+                    'twig',
+                    function ($twig, $app) {
+                        $filterParse = new \Twig_SimpleFilter(
+                            'markdown_parse',
+                            function ($text) use ($app) {
+                                return $app['nn.markdown']->parse($text);
+                            },
+                            array('is_safe' => array('html'))
+                        );
+                        $twig->addFilter($filterParse);
+                        $filterParseFile = new \Twig_SimpleFilter(
+                            'markdown_parse_file',
+                            function ($filename) use ($app) {
+                                return $app['nn.markdown']->parseFile(
+                                    $filename
+                                );
+                            },
+                            array('is_safe' => array('html'))
+                        );
+                        $fucntionParseLastFile = new \Twig_SimpleFunction(
+                            'markdown_parse_last_file',
+                            function () use ($app) {
+                                $content = "";
+                                $finderLast = $app['nn.markdown']->getNLastFiles(1);
+                                foreach ($finderLast as $file) {
+                                    $content = $file->getContents();
+                                }
+                                return $app['nn.markdown']->parse($content);
+                            },
+                            array('is_safe' => array('html'))
+                        );
+                        $twig->addFilter($filterParse);
+                        $twig->addFilter($filterParseFile);
+                        $twig->addFunction($fucntionParseLastFile);
+                        return $twig;
+                    }
+                )
+            );
+        }
     }
     /**
      * Boot
