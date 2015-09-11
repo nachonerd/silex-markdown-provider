@@ -113,5 +113,7 @@ Parse last file in markdown,path directory to html
     $parser = $app[nn.markdown];
     $hmtl = $parser->parse($markdown);
     $hmtl = $parser->parseFile($filename);
+    $finder = $parser->getAllFiles($filename);
+    $finder = $parser->getNLastFiles(10);
     ...
 ```
