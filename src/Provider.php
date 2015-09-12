@@ -65,7 +65,7 @@ class Provider implements ServiceProviderInterface
             $app['twig'] = $app->share(
                 $app->extend(
                     'twig',
-                    function ($twig, $app) {
+                    function (\Twig_Environment $twig, Application $app) {
                         $filterParse = new \Twig_SimpleFilter(
                             'markdown_parse',
                             function ($text) use ($app) {
