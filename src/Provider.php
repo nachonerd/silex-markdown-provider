@@ -55,7 +55,7 @@ class Provider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['nn.markdown'] = $app->share(
-            function () use ($app) {
+            function () {
                 return new Markdown(
                 );
             }

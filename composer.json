@@ -2,9 +2,8 @@
     "name": "nachonerd/silex-markdown-provider",
     "description": "Silex Service Provider using cebe/markdown",
     "type": "library",
-    "version": "1.0.3",
     "keywords": ["PHP", "Silex", "Service", "Provider", "ServiceProvider", "Markdown"],
-    "license": "GNU GPL v3",
+    "license": "GPL-3.0",
     "autoload": {
         "psr-4": {"NachoNerd\\Silex\\Markdown\\": "src/"}
     },
