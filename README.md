@@ -9,6 +9,8 @@ Silex Markdown Provider
 [![Test Coverage](https://codeclimate.com/github/nachonerd/silex-markdown-provider/badges/coverage.svg)](https://codeclimate.com/github/nachonerd/silex-markdown-provider/coverage)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8c8f45cf-79ba-4898-95c0-575a422e4acd/big.png)](https://insight.sensiolabs.com/projects/8c8f45cf-79ba-4898-95c0-575a422e4acd)
+
 ### Description
 Silex Service Provider using [cebe/markdown](http://markdown.cebe.cc/). cebe/markdown was created by [Carsten Brandt](http://cebe.cc/about).
 
