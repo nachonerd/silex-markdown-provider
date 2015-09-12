@@ -13,7 +13,7 @@ Silex Markdown Provider
 Silex Service Provider using [cebe/markdown](http://markdown.cebe.cc/). cebe/markdown was created by [Carsten Brandt](http://cebe.cc/about).
 
 ### License
-GNU GPL v3
+GPL-3.0
 
 ### Requirements
 - [PHP version 5.4](http://php.net/releases/5_4_0.php)
